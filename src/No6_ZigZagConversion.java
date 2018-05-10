@@ -1,4 +1,4 @@
-public class No7_ZigZagConversion {
+public class No6_ZigZagConversion {
 
 
     public static void main(String[] args) {
