@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//TODO
+//TODO Still Exceeds Time Limit
 public class No15_3Sum {
 
     public static void main(String[] args){
@@ -14,7 +14,7 @@ public class No15_3Sum {
 
         Arrays.sort(nums);
 
-        for(int i = 0; i < nums.length; i++){
+        for(int i = 0; i < nums.length - 2; i++){
 
             if(nums[i] > 0){
                 return resultList;
@@ -23,11 +23,19 @@ public class No15_3Sum {
             int start = i + 1;
             int end = nums.length - 1;
 
+            if(nums[end] < 0){
+                return resultList;
+            }
+
+
             while(start < end){
                 int add = nums[i] + nums[start] + nums[end];
 
                 if(add > 0){
                     end--;
+                    if(nums[end] < 0){
+                        return resultList;
+                    }
                 }else if(add < 0){
                     start++;
                 }else{
@@ -38,10 +46,21 @@ public class No15_3Sum {
                     if(!resultList.contains(sumList)){
                         resultList.add(sumList);
                     }
-                    start++;
+
+                    int preStart = start;
+
+                    while (start < end && nums[start] == nums[preStart]){// Here
+                        start++;
+                    }
+                    end--;
                 }
             }
 
+            int prevI = i;
+            while (i < nums.length && nums[i] == nums[prevI]){
+                i++;
+            } // And Here
+//            i--;
         }
 
 
