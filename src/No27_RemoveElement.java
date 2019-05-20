@@ -1,4 +1,4 @@
-public class No_27_RemoveElement {
+public class No27_RemoveElement {
 
 
     public static int removeElement(int[] nums, int val){
