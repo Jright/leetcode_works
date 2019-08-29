@@ -18,12 +18,16 @@ public class No5_LongestPalindromicSubstring {
     private static int maxRight = 0;
 
     public static void main(String[] args){
-        String s = "abbawsidwdisw";
+        String s = "vaabaac";
         String result = getLongestPalindromicSubString(s);
         System.out.println("The result is: " + result);
     }
 
     private static String getLongestPalindromicSubString(String string){
+
+        if(string.length() == 0){
+            return "";
+        }
 
         for(int i = 0; i < string.length(); i++){
             int oddDistance = getLongestDistance(string, i, i);// If the size number of string is odd, so the palindromic center should be a element of this char array
