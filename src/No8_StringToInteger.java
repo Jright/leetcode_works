@@ -1,70 +1,73 @@
 public class No8_StringToInteger {
 
-    //TODO Unaccepted answer, too many corner cases. Check out atoi in Stlib.h(C)
-    public static void main(String[] args){
-        int beauty = myatoi("-91283472332");
+
+    public static void main(String[] args) {
+        int beauty = myAtoi("-91283472332");
         System.out.println(beauty);
     }
 
-    public static int myatoi(String arg){
+    public static int myAtoi(String str) {
 
-        if(arg.isEmpty() || arg.equals("-")){
-            return 0;
-        }
+        long result = 0;
 
-        int digitCount = 0;
-        char[] chars = arg.toCharArray();
+        int n = str.length();
 
-        if(isDigit(chars[0])){
-            for(int i = 0; i < chars.length; i++){
-                if(isDigit(chars[i])){
-                    digitCount++;
-                }else{
+        boolean negative = false;
+        boolean positive = false;
+
+        // whether there is a leading zero
+        boolean leading_zero = false;
+
+
+        // whether a/some digit(s) has been counted already.
+        boolean verify = false;
+
+//        boolean content = false;
+        boolean exceeded = false;
+
+        for (int i = 0; i < n; i++) {
+            char c = str.charAt(i);
+            if (c == ' ') {
+                if (verify || negative || positive) {
                     break;
+                } else {
+                    continue;
                 }
             }
-            String substring = arg.substring(0, digitCount);
-            Long aLong = Long.valueOf(substring);
 
-            if(aLong > Integer.MAX_VALUE){
-                return Integer.MAX_VALUE;
-            }else if(aLong < Integer.MIN_VALUE){
-                return Integer.MIN_VALUE;
-            }else{
-                return Integer.valueOf(substring);
-            }
-
-        }else if(chars[0] == '-'){
-            digitCount = 1;
-            for(int i = 1; i < chars.length; i++){
-                if(isDigit(chars[i])){
-                    digitCount++;
-                }else{
+            if (c == '+') {
+                if (verify || negative || positive) {
                     break;
                 }
+                positive = true;
+                continue;
             }
-            String substring = arg.substring(1, digitCount);
-            Long aLong = Long.valueOf(substring);
 
-            if(aLong > Integer.MAX_VALUE){
-                return Integer.MAX_VALUE;
-            }else if(aLong < Integer.MIN_VALUE){
-                return Integer.MIN_VALUE;
-            }else{
-                Integer integer = Integer.valueOf(substring);
-                return -integer;
+            if (c == '-') {
+                if (negative || verify || positive) {
+                    break;
+                }
+                negative = true;
+                continue;
             }
-        } else{
-            return 0;
-        }
-    }
 
-    public static boolean isDigit(char start){
-        if(start <= '9' && start >= '0'){
-            return true;
-        }else{
-            return false;
-        }
-    }
+            if (c < '0' || c > '9') {
+                break;
+            }
 
+            if (c == '0' && !verify) {
+                leading_zero = true;
+            } else {
+                verify = true;
+            }
+
+            result = result * 10 + (c - '0');
+            verify = true;
+
+            if (result >= (1L << 31)) {
+                result = negative ? (1L << 31) : (1L << 31) - 1;
+            }
+        }
+        return negative ? (int) -result : (int) result;
+    }
 }
