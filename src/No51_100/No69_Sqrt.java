@@ -1,3 +1,5 @@
+package No51_100;
+
 public class No69_Sqrt {
 
     public int mySqrt(int y) {
