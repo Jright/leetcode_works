@@ -2,6 +2,7 @@ package No51_100;
 
 public class No69_Sqrt {
 
+    // Two tricks, the binary search and the long data type (in case int multiply overflows)
     public int mySqrt(int y) {
         long mid;
         long start = 0;
