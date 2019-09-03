@@ -30,7 +30,7 @@ public class No107_BinaryTreeLevelTraversalII {
     }
 
 
-    public class TreeNode {
+    class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
