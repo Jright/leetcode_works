@@ -1,5 +1,7 @@
 package No1_50;
 
+import Data_Structures.ListNode;
+
 /**
  * Created by jright on 2017/7/31.
  */
@@ -41,14 +43,4 @@ public class No2_AddTwoNumbers {
     public static void main(String[] args){
 
     }
-
-
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
 }

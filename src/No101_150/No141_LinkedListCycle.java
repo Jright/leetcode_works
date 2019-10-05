@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.ListNode;
+
 public class No141_LinkedListCycle {
 
     public boolean hasCycle(ListNode head) {
@@ -18,15 +20,5 @@ public class No141_LinkedListCycle {
             }
         }
         return false;
-    }
-
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
     }
 }

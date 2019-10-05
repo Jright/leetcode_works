@@ -1,15 +1,8 @@
 package No1_50;
 
+import Data_Structures.ListNode;
+
 public class No24_SwapPairs {
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode swapPairs(ListNode head) {
         ListNode dummy = new ListNode(0);

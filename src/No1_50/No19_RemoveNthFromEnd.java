@@ -1,5 +1,7 @@
 package No1_50;
 
+import Data_Structures.ListNode;
+
 public class No19_RemoveNthFromEnd {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {//Note: Terrible question, what is this parameter 'head'? why return it when remove the nth
@@ -21,14 +23,5 @@ public class No19_RemoveNthFromEnd {
         second.next = second.next.next;
         return dummy.next;
 
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

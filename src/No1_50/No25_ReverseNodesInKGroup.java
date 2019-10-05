@@ -1,17 +1,8 @@
 package No1_50;
 
+import Data_Structures.ListNode;
+
 public class No25_ReverseNodesInKGroup {
-
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
 
     public ListNode reverseKGroup(ListNode head, int k) {
         if(k <= 1 || head == null){

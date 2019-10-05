@@ -1,6 +1,8 @@
 package No51_100;
 
 
+import Data_Structures.ListNode;
+
 public class No83_RemoveDuplicatesinSortedList {
     public ListNode deleteDuplicates(ListNode head){
         ListNode pointer = head;
@@ -19,12 +21,3 @@ public class No83_RemoveDuplicatesinSortedList {
     }
 }
 
-//  Definition for singly-linked list.
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
