@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.TreeNode;
+
 public class No104_MaximumDepthofBinaryTree {
 
     public int maxDepth(TreeNode root) {
@@ -16,14 +18,6 @@ public class No104_MaximumDepthofBinaryTree {
 
 
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
 }

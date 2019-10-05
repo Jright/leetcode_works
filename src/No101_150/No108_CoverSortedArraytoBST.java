@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.TreeNode;
+
 public class No108_CoverSortedArraytoBST {
 
     public TreeNode sortedArrayToBST(int[] nums) {
@@ -19,16 +21,6 @@ public class No108_CoverSortedArraytoBST {
         node.right = dfs(nums, mid + 1, right);
         return node;
 
-    }
-
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 
 }

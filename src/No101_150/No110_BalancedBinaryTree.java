@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.TreeNode;
+
 public class No110_BalancedBinaryTree {
 
     public boolean isBalanced(TreeNode root) {
@@ -30,18 +32,6 @@ public class No110_BalancedBinaryTree {
         int maxRight = maxDepth(node.right, level + 1);
 
         return Math.max(maxLeft, maxRight);
-    }
-
-
-    //      Definition for a binary tree node.
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 
 }

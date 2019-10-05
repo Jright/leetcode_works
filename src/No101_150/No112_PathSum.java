@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.TreeNode;
+
 public class No112_PathSum {
 
     public boolean hasPathSum(TreeNode root, int sum) {
@@ -18,14 +20,5 @@ public class No112_PathSum {
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
-    //      Definition for a binary tree node.
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }

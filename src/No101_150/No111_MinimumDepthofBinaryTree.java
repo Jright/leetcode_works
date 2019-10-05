@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.TreeNode;
+
 public class No111_MinimumDepthofBinaryTree {
 
 
@@ -23,15 +25,6 @@ public class No111_MinimumDepthofBinaryTree {
         return Math.min(1 + minDepth(root.left), 1 + minDepth(root.right));
     }
 
-    //      Definition for a binary tree node.
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
 }
