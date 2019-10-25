@@ -4,6 +4,7 @@ import java.util.*;
 
 public class No49_GroupAnagrams {
 
+    // TODO Using the understanding of hash algorithm.
     public List<List<String>> groupAnagrams(String[] strs) {
         HashMap<String, List<String>> map = new HashMap<>();
 
