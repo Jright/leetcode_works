@@ -1,5 +1,7 @@
 package No101_150;
 
+import Data_Structures.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,17 +29,6 @@ public class No107_BinaryTreeLevelTraversalII {
         dfs(node.left, lists, level + 1);
         dfs(node.right, lists, level + 1);
         return lists;
-    }
-
-
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 
 }

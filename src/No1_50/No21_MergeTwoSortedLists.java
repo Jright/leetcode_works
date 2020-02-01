@@ -1,16 +1,8 @@
 package No1_50;
 
+import Data_Structures.ListNode;
+
 public class No21_MergeTwoSortedLists {
-
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {

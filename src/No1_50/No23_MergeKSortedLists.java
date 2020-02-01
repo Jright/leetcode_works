@@ -1,5 +1,7 @@
 package No1_50;
 
+import Data_Structures.ListNode;
+
 import java.util.PriorityQueue;
 
 public class No23_MergeKSortedLists {
@@ -34,14 +36,4 @@ public class No23_MergeKSortedLists {
         return dummy.next;
 
     }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
 }

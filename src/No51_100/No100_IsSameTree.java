@@ -1,5 +1,7 @@
 package No51_100;
 
+import Data_Structures.TreeNode;
+
 public class No100_IsSameTree {
 
     public boolean isSameTree(TreeNode p, TreeNode q) {
@@ -18,14 +20,4 @@ public class No100_IsSameTree {
     }
 
 
-}
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
 }
