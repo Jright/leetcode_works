@@ -2,7 +2,6 @@ package No1_50;
 
 import java.util.PriorityQueue;
 
-//TODO 看答案的
 public class No23_MergeKSortedLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
