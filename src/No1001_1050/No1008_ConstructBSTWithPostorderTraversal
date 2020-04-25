@@ -1,0 +1,37 @@
+package No1001_1050;
+
+import Data_Structures.TreeNode;
+
+public class No1008_ConstructBSTWithPostorderTraversal{
+
+    int idx = 0;
+    int[] preorder;
+    int n;
+
+    public TreeNode helper(int lower, int upper){
+        if(idx == n){
+            return null;
+        }
+
+        int val = preorder[idx];
+
+        if(val < lower || val > upper){
+            return null;
+        }
+
+        idx++;
+        TreeNode root = new TreeNode(val);
+        root.left = helper(lower, val);
+        root.right = helper(val, upper);
+
+        return root;
+    }
+
+
+    public TreeNode bstFromPreorder(int[] preorder) {
+        this.preorder = preorder;
+        n = preorder.length;
+        return helper(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+}
