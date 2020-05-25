@@ -1,3 +1,5 @@
+package No701_750;
+
 public class No733_FloodFill {
 
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
