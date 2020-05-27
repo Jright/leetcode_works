@@ -1,8 +1,5 @@
 package No1001_1050;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class No1035_UncrossedLines {
 
     public int maxUncrossedLines(int[] A, int[] B) {
