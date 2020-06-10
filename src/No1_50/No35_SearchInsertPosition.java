@@ -3,40 +3,35 @@ package No1_50;
 public class No35_SearchInsertPosition {
 
     public int searchInsert(int[] nums, int target) {
-
-        int result = 0;
-        if(target < nums[0]){
-            return result;
+        if(nums.length == 0){
+            return 0;
         }
 
-        if(target > nums[nums.length - 1]){
-            return nums.length;
+        if(target < nums[0]){
+            return 0;
+        }
+
+        int length = nums.length;
+
+        if(target > nums[length - 1]){
+            return length;
         }
 
         int left = 0;
-        int right = nums.length - 1;
+        int right = length - 1;
+        int mid = 0;
 
-        while(right - left > 1){
-            int mid = (left + right) >> 1;
+        while(left <= right){
+            mid = left + (right - left) / 2;
             if(nums[mid] == target){
                 return mid;
+            }else if(nums[mid] < target){
+                left = mid + 1;
             }else if(nums[mid] > target){
-                right = mid;
-            }else{
-                left = mid;
+                right = mid - 1;
             }
         }
 
-        if(nums[left] == target){
-            return left;
-        }else if(nums[right] == target){
-            return right;
-        }else if(nums[left] > target){
-            return left;
-        }else if(nums[right] < target){
-            return right;
-        }else{
-            return right;
-        }
+        return left;
     }
 }
