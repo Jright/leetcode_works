@@ -20,46 +20,53 @@ import java.util.Arrays;
 
  */
 
-//FIXME This merge method is O(m + n)
+// Got the answer and great explaination on https://www.youtube.com/watch?time_continue=479&v=LPFhl65R7ww&feature=emb_logo
 public class No4_FindMedianofTwoSortedArray {
 
     public static void main(String[] args){
         int[] nums1 = new int[]{1, 2};
         int[] nums2 = new int[]{3, 4};
-        float result = findMedianOfTwoSortedArray(nums1, nums2);
+        double result = findMedianOfTwoSortedArray(nums1, nums2);
         System.out.println("result = " + result);
     }
 
-    public static float findMedianOfTwoSortedArray(int[] nums1,int[] nums2){
-
-        int low1 = 0, high1 = nums1.length - 1, low2 = 0, high2 = nums2.length - 1;
-        int runner = 0;
-        int[] result = new int[nums1.length + nums2.length];
-        Arrays.fill(result,0);
-
-        while(low1 <= high1 && low2 <= high2){
-            result[runner++] = nums1[low1] >= nums2[low2] ? nums2[low2++] : nums1[low1++];
+    public static double findMedianOfTwoSortedArray(int[] nums1,int[] nums2){
+        int x = nums1.length;
+        int y = nums2.length;
+        if(x > y){
+            return findMedianOfTwoSortedArray(nums2, nums1);
         }
 
-        while(low1 <= high1){
-            result[runner++] = nums1[low1++];
+        int left = 0;
+        int right = x;
+
+        while(left <= right){
+            int partitionX = left + (right - left) / 2;
+            int partitionY = (x + y + 1) / 2 - partitionX;
+
+            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
+            int minRightX = (partitionX == x) ? Integer.MAX_VALUE : nums1[partitionX];
+
+            int maxLeftY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
+            int minRightY = (partitionY == y) ? Integer.MAX_VALUE : nums2[partitionY];
+
+            if(maxLeftX <= minRightY && maxLeftY <= minRightX){
+                // found the median group
+                if((x + y) % 2 == 0){
+                    return (double) (Math.max(maxLeftX, maxLeftY)
+                            + Math.min(minRightX, minRightY)) / 2;
+                }else{
+                    return (double) (Math.max(maxLeftX, maxLeftY));
+                }
+            }else if(maxLeftX > minRightY){
+                right = partitionX - 1;
+            }else{
+                left = partitionX + 1;
+            }
+
         }
 
-        while(low2 <= high2){
-            result[runner++] = nums2[low2++];
-        }
-
-        int mid = result.length / 2;
-
-        for(Integer i : result){
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        if(result.length % 2 == 0){
-           return ((float) result[mid] + (float) result[mid - 1]) / 2 ;
-        }else{
-            return (float) result[mid];
-        }
+        throw new IllegalArgumentException("Illegal input arrays");
     }
 
 
