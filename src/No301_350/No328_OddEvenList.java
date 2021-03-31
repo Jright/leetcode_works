@@ -9,19 +9,21 @@ public class No328_OddEvenList {
             return head;
         }
 
-        ListNode odd = head;
-        ListNode even = head.next;
-        ListNode evenOrigin = even;
+        ListNode oddHead = head;
+        ListNode evenHead = head.next;
 
-        while(odd.next != null && odd.next.next != null){
-            odd.next = even.next;
-            odd = odd.next;
-            even.next = odd.next;
-            even = even.next;
+        ListNode oddRunner = oddHead;
+        ListNode evenRunner = evenHead;
+
+        while(oddRunner.next != null && evenRunner.next != null){
+            oddRunner.next = oddRunner.next.next;
+            oddRunner = oddRunner.next;
+            evenRunner.next = evenRunner.next.next;
+            evenRunner = evenRunner.next;
         }
 
-        odd.next = evenOrigin;
-        return head;
+        oddRunner.next = evenHead;
+        return oddHead;
     }
 
 }
