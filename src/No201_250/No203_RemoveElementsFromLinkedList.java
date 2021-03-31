@@ -10,19 +10,16 @@ public class No203_RemoveElementsFromLinkedList {
 
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        helper(dummy, head, val);
+        ListNode prev = dummy;
+        while(head != null){
+            if(head.val == val){
+                prev.next = prev.next.next;
+            }else{
+                prev = prev.next;
+            }
+            head = head.next;
+        }
 
         return dummy.next;
-    }
-
-    private void helper(ListNode prev, ListNode node, int val){
-        if(node != null){
-            if(node.val == val){
-                prev.next = node.next;
-                helper(prev, node.next, val);
-            }else{
-                helper(node, node.next, val);
-            }
-        }
     }
 }
