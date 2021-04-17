@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class No144_Binary_Tree_Preorder_Traversal {
+public class No144_BinaryTreePreorderTraversal {
 
     public List<Integer> preorderTraversal(TreeNode root) {
         if (root == null) {
