@@ -10,9 +10,10 @@ public class No150_EvaluateReversePolishNotation {
         }
 
         ArrayDeque<Integer> stack = new ArrayDeque<>();
-
+        String operators = "+-*/";
         for(int i = 0; i < tokens.length; i++){
-            if(isInteger(tokens[i])){
+//            if(isInteger(tokens[i])){
+            if(!operators.contains(tokens[i])){
                 stack.push(Integer.parseInt(tokens[i]));
             }else{
                 if(stack.size() < 2){
@@ -36,15 +37,15 @@ public class No150_EvaluateReversePolishNotation {
         return stack.pop();
     }
 
-    public boolean isInteger(String strNum) {
-        if (strNum == null || strNum.length() == 0) {
-            return false;
-        }
-        try {
-            int d = Integer.parseInt(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
+//    public boolean isInteger(String strNum) {
+//        if (strNum == null || strNum.length() == 0) {
+//            return false;
+//        }
+//        try {
+//            int d = Integer.parseInt(strNum);
+//        } catch (NumberFormatException nfe) {
+//            return false;
+//        }
+//        return true;
+//    }
 }
