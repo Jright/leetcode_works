@@ -1,16 +1,16 @@
 package No151_200;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
 
 public class No155_MinStack {
 
 
-    Stack<Integer> stack;
+    ArrayDeque<Integer> stack;
     int minValue = Integer.MAX_VALUE;
 
     /** initialize your data structure here. */
     public No155_MinStack() {
-        stack = new Stack<>();
+        stack = new ArrayDeque<>();
     }
 
     public void push(int x) {
