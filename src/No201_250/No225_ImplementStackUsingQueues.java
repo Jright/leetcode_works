@@ -19,7 +19,6 @@ public class No225_ImplementStackUsingQueues {
             queue.add(queue.remove());
             size--;
         }
-
     }
 
     /** Removes the element on top of the stack and returns that element. */
