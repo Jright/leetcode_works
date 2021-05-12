@@ -21,4 +21,23 @@ public class No331_VerifyPreorderSerializationOfABinaryTree {
         }
         return diff == 0;
     }
+
+
+//    public boolean isValidSerialization(String preorder) {
+//        Deque<String> stack = new ArrayDeque<>();
+//        //String[] s = preorder.split(',');
+//        for(String ch : preorder.split(",")){
+//            //if(ch == ',')   continue;
+//            if(ch.equals("#")){
+//                while(!stack.isEmpty() && stack.getLast().equals("#")){
+//                    stack.removeLast();
+//                    if(stack.isEmpty()) return false;
+//                    stack.removeLast();
+//                }
+//            }
+//            stack.addLast(ch);
+//        }
+//        return stack.size() == 1 && stack.getLast().equals("#")
+//                ? true : false;
+//    }
 }
