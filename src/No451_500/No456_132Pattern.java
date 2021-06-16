@@ -1,5 +1,6 @@
 package No451_500;
 
+import java.util.ArrayDeque;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,32 +10,22 @@ public class No456_132Pattern {
             return false;
         }
 
-        int leftMin = nums[0];
+        int rightMax = Integer.MIN_VALUE;
+        int n = nums.length;
+        ArrayDeque<Integer> twoCandidateStack = new ArrayDeque<>();
+        twoCandidateStack.push(nums[n - 1]);
 
-        TreeMap<Integer, Integer> rightValues = new TreeMap<>();
-
-        for(int i = 2; i < nums.length; i++){
-            rightValues.put(nums[i], rightValues.getOrDefault(nums[i], 0) + 1);
-        }
-
-        for(int j = 1; j < nums.length - 1; j++){
-            if(leftMin < nums[j]){
-                Integer next = rightValues.ceilingKey(leftMin + 1);
-                if(next !=  null && next < nums[j]){
-                    return true;
-                }else{
-                    continue;
-                }
+        for(int i = n - 2; i >= 0; i--){
+            if(nums[i] < rightMax){
+                return true;
             }
 
-            if(nums[j] < leftMin){
-                leftMin = nums[j];
+            while (!twoCandidateStack.isEmpty() && twoCandidateStack.peek() < nums[i]){
+                rightMax = twoCandidateStack.pop();
             }
 
-            rightValues.put(nums[j + 1], rightValues.get(nums[j + 1]) - 1);
-
-            if(rightValues.get(nums[j + 1]) == 0){
-                rightValues.remove(nums[j + 1]);
+            if(nums[i] > rightMax){
+                twoCandidateStack.push(nums[i]);
             }
         }
 
