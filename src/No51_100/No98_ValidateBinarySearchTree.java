@@ -8,32 +8,18 @@ public class No98_ValidateBinarySearchTree {
             return true;
         }
 
-        if(root.left != null && root.right != null){
-            if(root.val <= root.left.val){
-                return false;
-            }
+        return validate(root, null, null);
+    }
 
-            if(root.val >= root.right.val){
-                return false;
-            }
-
-            return isValidBST(root.left) && isValidBST(root.right);
+    private boolean validate(TreeNode node, Integer low, Integer high){
+        if(node == null){
+            return true;
         }
 
-        if(root.left != null){
-            if(root.val <= root.left.val){
-                return false;
-            }
-            return isValidBST(root.left);
+        if((low != null && node.val <= low) || (high != null && node.val >= high)){
+            return false;
         }
 
-        if(root.right != null){
-            if(root.val >= root.right.val){
-                return false;
-            }
-            return isValidBST(root.right);
-        }
-
-        return true;
+        return validate(node.right, node.val, high) && validate(node.left, low, node.val);
     }
 }
