@@ -17,7 +17,6 @@ public class No105_ConstructBinaryTreefromPreorderandInorderTraversal {
         }
 
         return buildTreeWithIndexes(preorder, inorder, 0, n - 1, 0, n - 1);
-
     }
 
     private TreeNode buildTreeWithIndexes(int[] preorder, int[] inorder, int preorder_left, int preorder_right,
