@@ -21,11 +21,13 @@ public class No144_BinaryTreePreorderTraversal {
         while (!stack.isEmpty()) {
             TreeNode popNode = stack.pop();
             result.add(popNode.val);
-            if(popNode.left != null){
-                stack.push(popNode.left);
-            }
+
             if(popNode.right != null){
                 stack.push(popNode.right);
+            }
+
+            if(popNode.left != null){
+                stack.push(popNode.left);
             }
         }
         return result;
