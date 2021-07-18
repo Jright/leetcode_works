@@ -5,28 +5,26 @@ import Data_Structures.TreeNode;
 public class No226_InvertBinaryTree {
 
     public TreeNode invertTree(TreeNode root) {
-        if(root == null){
-            return root;
-        }
-
-        TreeNode result = new TreeNode();
-        result.val = root.val;
-        result.left = helper(root.right);
-        result.right = helper(root.left);
-        return result;
-
+        TreeNode node = root;
+        helper(node);
+        return root;
     }
 
-    private TreeNode helper(TreeNode origin){
-        if(origin == null){
-            return null;
+    private void helper(TreeNode node){
+        if(node == null){
+            return;
         }
 
-        TreeNode node = new TreeNode();
-        node.val = origin.val;
+        if(node.left != null){
+            helper(node.left);
+        }
 
-        node.left = helper(origin.right);
-        node.right = helper(origin.left);
-        return node;
+        if(node.right != null){
+            helper(node.right);
+        }
+
+        TreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
     }
 }
