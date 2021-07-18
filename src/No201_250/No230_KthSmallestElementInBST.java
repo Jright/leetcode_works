@@ -2,24 +2,32 @@ package No201_250;
 
 import Data_Structures.TreeNode;
 
-import java.util.Stack;
+import java.util.*;
 
 public class No230_KthSmallestElementInBST {
 
     public int kthSmallest(TreeNode root, int k) {
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        List<Integer> inorderList = new ArrayList<>();
 
-        while (true) {
-            if (root != null) {
-                stack.push(root);
-                root = root.left;
+        TreeNode node = root;
+        while(node != null || !stack.isEmpty()){
+            while(node != null){
+                stack.push(node);
+                node = node.left;
             }
+            node = stack.pop();
+            inorderList.add(node.val);
+            if(inorderList.size() == k){
+                return inorderList.get(inorderList.size() - 1);
+            }
+            node = node.right;
+        }
 
-            root = stack.pop();
-            if (--k == 0) {
-                return root.val;
-            }
-            root = root.right;
+        if(k >= 1 && k <= inorderList.size()){
+            return inorderList.get(k - 1);
+        }else{
+            return Integer.MIN_VALUE;
         }
     }
 }
