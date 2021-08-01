@@ -6,6 +6,15 @@ import java.util.*;
 
 public class No314_BinaryTreeVerticalOrderTraversal {
 
+    class Pair {
+        TreeNode node;
+        int col;
+        Pair(TreeNode node, int col) {
+            this.node = node;
+            this.col = col;
+        }
+    }
+
     public List<List<Integer>> verticalOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
 
@@ -14,19 +23,17 @@ public class No314_BinaryTreeVerticalOrderTraversal {
         }
 
         Map<Integer, List<Integer>> map = new HashMap<>();
-        Queue<Map<TreeNode, Integer>> queue = new ArrayDeque<>();
+        Queue<Pair> queue = new ArrayDeque<>();
 
         int column = 0;
-        Map<TreeNode, Integer> nodeColumnMap = new HashMap<>();
-        nodeColumnMap.put(root, column);
-        queue.offer(nodeColumnMap);
+        queue.offer(new Pair(root, column));
         int minColumn = Integer.MAX_VALUE;
         int maxColumn = Integer.MIN_VALUE;
 
         while(!queue.isEmpty()){
-            Map<TreeNode, Integer> pair = queue.poll();
-            root = (TreeNode) pair.keySet().toArray()[0];
-            column = (int) pair.values().toArray()[0];
+            Pair pair = queue.poll();
+            root = pair.node;
+            column = pair.col;
 
             if(root != null){
                 if(!map.containsKey(column)){
@@ -34,20 +41,15 @@ public class No314_BinaryTreeVerticalOrderTraversal {
                 }
 
                 map.get(column).add(root.val);
-                Map<TreeNode, Integer> leftMap = new HashMap<>();
-                leftMap.put(root.left, column - 1);
-
-                Map<TreeNode, Integer> rightMap = new HashMap<>();
-                rightMap.put(root.right, column + 1);
-                queue.offer(leftMap);
-                queue.offer(rightMap);
+                queue.offer(new Pair(root.left, column - 1));
+                queue.offer(new Pair(root.right, column + 1));
 
                 if(column < minColumn){
                     minColumn = column;
                 }
 
                 if(column > maxColumn){
-                    maxColumn = column;
+                    maxColumn = column + 1;
                 }
 
             }
@@ -59,6 +61,5 @@ public class No314_BinaryTreeVerticalOrderTraversal {
         }
 
         return res;
-
     }
 }
