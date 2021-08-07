@@ -3,13 +3,6 @@ package No401_450;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-class Node {
-    public int val;
-    public Node prev;
-    public Node next;
-    public Node child;
-};
-
 public class No430_FlattenAMultiLevelDoublyLinkedList {
 
     public Node flatten(Node head) {
@@ -36,4 +29,11 @@ public class No430_FlattenAMultiLevelDoublyLinkedList {
         }
         return head;
     }
+
+    class Node {
+        public int val;
+        public Node prev;
+        public Node next;
+        public Node child;
+    };
 }
