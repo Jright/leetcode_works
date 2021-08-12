@@ -28,9 +28,7 @@ public class No582_KillProcess {
             ans.add(item);
             List<Integer> childList = map.get(item);
             if(childList != null){
-                for(Integer num : childList){
-                    queue.offer(num);
-                }
+                queue.addAll(childList);
             }
         }
 
