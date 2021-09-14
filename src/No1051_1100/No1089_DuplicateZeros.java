@@ -1,4 +1,4 @@
-package No1051_1010;
+package No1051_1100;
 
 public class No1089_DuplicateZeros {
 
