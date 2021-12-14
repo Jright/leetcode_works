@@ -4,32 +4,28 @@ import Data_Structures.TreeNode;
 
 public class No938_RangeSumOfBST {
 
-    int left;
-    int right;
+    int sum = 0;
 
     public int rangeSumBST(TreeNode root, int L, int R) {
-        if(root == null){
-            return 0;
-        }
-
-        left = L;
-        right = R;
-        return helper(root);
+        return helper(root, L, R);
     }
 
-    private int helper(TreeNode node){
+    private int helper(TreeNode node, int left, int right){
+
         if(node == null){
             return 0;
         }
 
-        if(node.val < left){
-            return helper(node.right);
+        if(node.val >= left && node.val <= right){
+            sum += node.val;
+            helper(node.left, left, right);
+            helper(node.right, left, right);
+        }else if(node.val < left){
+            helper(node.right, left, right);
+        }else if(node.val > right){
+            helper(node.left, left, right);
         }
 
-        if(node.val > right){
-            return helper(node.left);
-        }
-
-        return node.val + helper(node.left) + helper(node.right);
+        return sum;
     }
 }
