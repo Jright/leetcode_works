@@ -29,7 +29,6 @@ public class No1091_ShortestPathInBinaryMatrix {
             }
 
             for (int[] neighbors : getNeighbors(row, col, grid)) {
-                // TODO
                 int neighborRow = neighbors[0];
                 int neighborCol = neighbors[1];
                 queue.add(new int[]{neighborRow, neighborCol});
