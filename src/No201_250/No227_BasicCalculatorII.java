@@ -9,34 +9,34 @@ public class No227_BasicCalculatorII {
             return 0;
         }
 
-        ArrayDeque<Integer> numStack = new ArrayDeque<>();
         char operator = '+';
-        int currentNum = 0;
+        int lastNumber = 0;
+        int currentNumber = 0;
         int res = 0;
         for (int i = 0; i < s.length(); i++) {
             char curr = s.charAt(i);
             if (Character.isDigit(curr)) {
-                currentNum = currentNum * 10 + (curr - '0');
+                currentNumber = currentNumber * 10 + (curr - '0');
             }
 
             if (!Character.isDigit(curr) && !Character.isWhitespace(curr) || i == s.length() - 1) {
                 if (operator == '+') {
-                    numStack.push(currentNum);
+                    res += lastNumber;
+                    lastNumber = currentNumber;
                 } else if (operator == '-') {
-                    numStack.push(-currentNum);
+                    res += lastNumber;
+                    lastNumber = -currentNumber;
                 } else if (operator == '*') {
-                    numStack.push(numStack.pop() * currentNum);
+                    lastNumber *= currentNumber;
                 } else if (operator == '/') {
-                    numStack.push(numStack.pop() / currentNum);
+                    lastNumber /= currentNumber;
                 }
                 operator = curr;
-                currentNum = 0;
+                currentNumber = 0;
             }
         }
 
-        while(!numStack.isEmpty()){
-            res += numStack.pop();
-        }
+        res += lastNumber;
         return res;
     }
 }
