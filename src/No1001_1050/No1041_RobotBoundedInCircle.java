@@ -1,6 +1,7 @@
 package No1001_1050;
 
 public class No1041_RobotBoundedInCircle {
+    // Copied answer, 33% speed 7% space
     public boolean isRobotBounded(String instructions) {
         int[][] directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
