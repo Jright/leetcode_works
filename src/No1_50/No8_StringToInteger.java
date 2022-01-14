@@ -2,74 +2,36 @@ package No1_50;
 
 public class No8_StringToInteger {
 
+    public int myAtoi(String input) {
+        int sign = 1;
+        int result = 0;
+        int index = 0;
+        int n = input.length();
 
-    public static void main(String[] args) {
-        int beauty = myAtoi("-91283472332");
-        System.out.println(beauty);
-    }
-
-    public static int myAtoi(String str) {
-
-        long result = 0;
-
-        int n = str.length();
-
-        boolean negative = false;
-        boolean positive = false;
-
-        // whether there is a leading zero
-        boolean leading_zero = false;
-
-
-        // whether a/some digit(s) has been counted already.
-        boolean verify = false;
-
-//        boolean content = false;
-        boolean exceeded = false;
-
-        for (int i = 0; i < n; i++) {
-            char c = str.charAt(i);
-            if (c == ' ') {
-                if (verify || negative || positive) {
-                    break;
-                } else {
-                    continue;
-                }
-            }
-
-            if (c == '+') {
-                if (verify || negative || positive) {
-                    break;
-                }
-                positive = true;
-                continue;
-            }
-
-            if (c == '-') {
-                if (negative || verify || positive) {
-                    break;
-                }
-                negative = true;
-                continue;
-            }
-
-            if (c < '0' || c > '9') {
-                break;
-            }
-
-            if (c == '0' && !verify) {
-                leading_zero = true;
-            } else {
-                verify = true;
-            }
-
-            result = result * 10 + (c - '0');
-            verify = true;
-
-            if (result >= (1L << 31)) {
-                result = negative ? (1L << 31) : (1L << 31) - 1;
-            }
+        while (index < n && input.charAt(index) == ' ') {
+            index++;
         }
-        return negative ? (int) -result : (int) result;
+
+        if (index < n && input.charAt(index) == '+') {
+            sign = 1;
+            index++;
+        } else if (index < n && input.charAt(index) == '-') {
+            sign = -1;
+            index++;
+        }
+
+        while (index < n && Character.isDigit(input.charAt(index))) {
+            int digit = input.charAt(index) - '0';
+
+            if ((result > Integer.MAX_VALUE / 10) ||
+                    (result == Integer.MAX_VALUE / 10 && digit > Integer.MAX_VALUE % 10)) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+
+            result = 10 * result + digit;
+            index++;
+        }
+
+        return sign * result;
     }
 }
