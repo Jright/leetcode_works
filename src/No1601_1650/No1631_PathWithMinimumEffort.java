@@ -35,7 +35,7 @@ public class No1631_PathWithMinimumEffort {
         int[][] diffMatrix = new int[rows][cols];
 
         for(int[] eachRow : diffMatrix){
-            Arrays.fill(eachRow, Integer.MIN_VALUE);
+            Arrays.fill(eachRow, Integer.MAX_VALUE);
         }
 
         diffMatrix[0][0] = 0;
