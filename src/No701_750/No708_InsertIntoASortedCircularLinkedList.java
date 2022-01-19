@@ -15,7 +15,8 @@ public class No708_InsertIntoASortedCircularLinkedList {
         boolean insert = false;
 
         do{
-            if(prev.val <= insertVal && insertVal <= curr.val){
+            if(prev.val <= insertVal && insertVal <=
+                    curr.val){
                 insert = true;
             }else if(prev.val > curr.val){
                 if(insertVal >= prev.val || insertVal <= curr.val){
