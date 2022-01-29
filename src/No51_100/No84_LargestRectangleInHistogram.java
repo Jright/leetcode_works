@@ -1,38 +1,38 @@
 package No51_100;
 
-public class No84_LargestRectangleInHistogram {
+import java.util.ArrayDeque;
+import java.util.Deque;
 
+public class No84_LargestRectangleInHistogram {
     public int largestRectangleArea(int[] heights) {
         if(heights == null || heights.length == 0){
             return 0;
         }
 
-        int[] lessFromLeft = new int[heights.length];
-        int[] lessFromRight = new int[heights.length];
-        lessFromRight[heights.length - 1] = heights.length;
-        lessFromLeft[0] = -1;
+        if(heights.length == 1){
+            return heights[0];
+        }
 
-        for(int i = 1; i < heights.length; i++){
-            int p = i - 1;
-            while(p >= 0 && heights[p] >= heights[i]){
-                p = lessFromLeft[p];
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        int maxArea = 0;
+        stack.push(-1);
+
+        for(int index = 0; index < heights.length; index++){
+            while(stack.peek() != -1 && (heights[stack.peek()] >= heights[index])){
+                int currentHeight = heights[stack.pop()];
+                int currentWidth = index - stack.peek() - 1;
+                maxArea = Math.max(maxArea, currentHeight * currentWidth);
             }
-            lessFromLeft[i] = p;
+            stack.push(index);
         }
 
-        for(int i = heights.length - 2; i >= 0; i--){
-            int p = i + 1;
-            while(p <= heights.length - 1 && heights[p] >= heights[i]){
-                p = lessFromRight[p];
-            }
-            lessFromRight[i] = p;
+        while(stack.peek() != -1){
+            int currentHeight = heights[stack.pop()];
+            int currentWidth = heights.length - stack.peek() - 1;
+            maxArea = Math.max(maxArea, currentHeight * currentWidth);
         }
 
-        int max = 0;
-        for(int i = 0; i < heights.length; i++){
-            max = Math.max(max, heights[i] * (lessFromRight[i] - lessFromLeft[i] - 1));
-        }
-        return max;
+        return maxArea;
     }
-
 }
