@@ -73,7 +73,7 @@ public class No212_WordSearchII {
         }
     }
 
-    class TrieNode{
+    static class TrieNode{
         Map<Character, TrieNode> children = new HashMap<>();
         String word = null;
         public TrieNode(){}
