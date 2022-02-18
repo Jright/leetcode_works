@@ -8,16 +8,19 @@ public class No39_CombinationSum {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> temp = new ArrayList<>();
-        backTrack(result, temp, candidates, 0, target);
-        return result;
+
+        List<List<Integer>> resList = new ArrayList<>();
+        List<Integer> currList = new ArrayList<>();
+
+        backtrack(resList, currList, candidates, 0, target);
+        return resList;
     }
 
-    private void backTrack(List<List<Integer>> result, List<Integer> temp, int[] candidates,int position, int target){
-
-        if(target == 0){
-            result.add(temp);
+    private void backtrack(List<List<Integer>> resList, List<Integer> currList, int[] candidates, int index, int target){
+        if(index == candidates.length){
+            if(target == 0){
+                resList.add(new ArrayList<>(currList));
+            }
             return;
         }
 
@@ -25,13 +28,12 @@ public class No39_CombinationSum {
             return;
         }
 
-        for(int i = position; i < candidates.length && target >= candidates[i]; i++){
-
-            temp.add(temp.size(), candidates[i]);
-            backTrack(result, temp, candidates, i, target - candidates[i]);
-            temp.remove(temp.size() - 1);
+        if(candidates[index] <= target){
+            currList.add(currList.size(), candidates[index]);
+            backtrack(resList, currList, candidates, index, target - candidates[index]);
+            currList.remove(currList.size() - 1);
         }
 
+        backtrack(resList, currList, candidates, index + 1, target);
     }
-
 }
