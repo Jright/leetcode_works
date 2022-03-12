@@ -1,52 +1,70 @@
 package No101_150;
 
+import java.util.HashMap;
+
 public class No138_CopyListWithRandomPointer {
 
-    private class Node {
-        int val;
-        Node next;
-        Node random;
+    // Visited dictionary to hold old node reference as "key" and new node reference as the "value"
+    HashMap<Node, Node> visited = new HashMap<Node, Node>();
+
+    public Node getClonedNode(Node node) {
+        // If the node exists then
+        if (node != null) {
+            // Check if the node is in the visited dictionary
+            if (this.visited.containsKey(node)) {
+                // If its in the visited dictionary then return the new node reference from the dictionary
+                return this.visited.get(node);
+            } else {
+                // Otherwise create a new node, add to the dictionary and return it
+                this.visited.put(node, new Node(node.val, null, null));
+                return this.visited.get(node);
+            }
+        }
+        return null;
+    }
+
+    public Node copyRandomList(Node head) {
+
+        if (head == null) {
+            return null;
+        }
+
+        Node oldNode = head;
+
+        // Creating the new head node.
+        Node newNode = new Node(oldNode.val);
+        this.visited.put(oldNode, newNode);
+
+        // Iterate on the linked list until all nodes are cloned.
+        while (oldNode != null) {
+            // Get the clones of the nodes referenced by random and next pointers.
+            newNode.random = this.getClonedNode(oldNode.random);
+            newNode.next = this.getClonedNode(oldNode.next);
+
+            // Move one step ahead in the linked list.
+            oldNode = oldNode.next;
+            newNode = newNode.next;
+        }
+        return this.visited.get(head);
+    }
+
+    static class Node {
+        public int val;
+        public Node next;
+        public Node random;
+
+        public Node() {}
 
         public Node(int val) {
             this.val = val;
             this.next = null;
             this.random = null;
         }
-    }
 
-
-    public Node copyRandomList(Node head) {
-        if(head == null){
-            return null;
+        public Node(int _val,Node _next,Node _random) {
+            val = _val;
+            next = _next;
+            random = _random;
         }
-
-        Node runner = head;
-        while(runner != null){
-            Node temp = runner.next;
-            runner.next = new Node(runner.val);
-            runner.next.next = temp;
-            runner = temp;
-        }
-
-        runner = head;
-        while(runner != null){
-            if(runner.random != null){
-                runner.next.random = runner.random.next;
-            }
-            runner = runner.next.next;
-        }
-
-        runner = head;
-        Node copyHead = runner.next;
-        Node copy = copyHead;
-        while(copy.next != null){
-            runner.next = runner.next.next;
-            runner = runner.next;
-
-            copy.next = copy.next.next;
-            copy = copy.next;
-        }
-        runner.next = runner.next.next;
-        return copyHead;
-    }
+    };
 }
