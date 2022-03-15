@@ -1,4 +1,4 @@
-package No1201_1250;
+package No1251_1300;
 
 public class No1277_CountSquareSubmatrixesWithAllOnes {
 
